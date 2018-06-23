@@ -1,28 +1,7 @@
-# `hdfs-client-krb5`
+# `hdfs-client`
 
-Use `fedora:27` and include HDFS and Kerberos client related packages only.
-Meant only for Kerberos-secured HDFS client connection.
-
-Contain `hdfs` and `kinit`/`klist` commands.
-
-## Onbuild Variant
-
-This should be the variant to use if you are planning to customize both the HDFS
-and Kerberos client configuration. `ONBUILD COPY` is performed for both sets of
-configuration.
-
-### Hadoop Configuration
-
-Place all the modified XML configurations (e.g. `core-site.xml`) for Hadoop in
-`./conf/hadoop/`. Note that the `.` refers to the directory of your own
-`Dockerfile`. Unmodified XML files need not appear in the directory, but at
-least one XML file must be present due to the limitation of `COPY` command.
-
-### Kerberos Configuration
-
-Place the modified `krb5.conf` for Kerberos in `./conf/krb5/krb5.conf`. Note
-that the `.` refers to the directory of your own `Dockerfile`. This file must be
-present for the `ONBUILD COPY` to work.
+Builds on
+[`hdfs-client-onbuild`](https://github.com/guangie88/hdfs-client-onbuild).
 
 ## Original Variant
 

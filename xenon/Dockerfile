@@ -1,1 +1,1 @@
-FROM guangie88/hdfs-client-krb5-onbuild:latest
+FROM guangie88/hdfs-client:krb5-onbuild

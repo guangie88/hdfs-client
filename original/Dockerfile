@@ -1,7 +1,7 @@
-FROM guangie88/hdfs-client-onbuild:latest AS hdfs-client
+FROM guangie88/hdfs-client:onbuild AS original
 
-FROM guangie88/hdfs-client-krb5-onbuild:latest AS hdfs-client-krb5
+FROM guangie88/hdfs-client:krb5-onbuild AS krb5
 
-FROM guangie88/hdfs-client-aws-onbuild:latest AS hdfs-client-aws
+FROM guangie88/hdfs-client:aws-onbuild AS aws
 
-FROM guangie88/hdfs-client-krb5-aws-onbuild:latest AS hdfs-client-krb5-aws
+FROM guangie88/hdfs-client:aws-krb5-onbuild AS aws-krb5

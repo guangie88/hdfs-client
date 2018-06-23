@@ -1,0 +1,35 @@
+language: bash
+
+services:
+- docker
+
+env:
+  global:
+  - IMAGE_NAME=guangie88/hdfs-client
+  
+before_script:
+- set -e
+- if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+  fi
+
+script:
+- docker build -t $IMAGE_NAME:original --target original original/
+- docker build -t $IMAGE_NAME:krb5 --target krb5 original/
+- docker build -t $IMAGE_NAME:aws --target aws original/
+- docker build -t $IMAGE_NAME:aws-krb5 --target aws-krb5 original/
+- docker build -t $IMAGE_NAME:xenon-example xenon/
+
+after_success:
+- |
+  if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+    docker push $IMAGE_NAME:original;
+    docker push $IMAGE_NAME:krb5;
+    docker push $IMAGE_NAME:aws;
+    docker push $IMAGE_NAME:aws-krb5;
+    docker push $IMAGE_NAME:xenon-example;
+  fi
+
+branches:
+  only:
+  - master
